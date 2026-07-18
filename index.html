@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โรงเรียนบ้านปงใหม่ | Banpongmai School</title>
+    
+    <!-- Google Fonts: Kanit (Headings) and Sarabun (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        school: {
+                            blue: '#0ea5e9',    
+                            blueDark: '#0284c7', 
+                            pink: '#ec4899',    
+                            pinkLight: '#fbcfe8',
+                            navy: '#1e293b',    
+                            gray: '#f8fafc',
+                            tableRow: '#f1f5f9'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Kanit', 'sans-serif'],
+                        body: ['Sarabun', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            color: #334155;
+            background-color: #f8fafc;
+            overflow-x: hidden; 
+        }
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-family: 'Kanit', sans-serif;
+        }
+        
+        .btn-gradient {
+            background-size: 200% auto;
+            background-image: linear-gradient(to right, #0ea5e9 0%, #ec4899 50%, #0ea5e9 100%);
+            transition: 0.5s;
+        }
+        .btn-gradient:hover {
+            background-position: right center;
+        }
+
+        .hover-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .hero-bg {
+            background-image: linear-gradient(rgba(30, 41, 59, 0.7), rgba(30, 41, 59, 0.8)), url('image_d2df07.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Styling scrollbar for neatness inside iframe */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-sm py-3">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-3 cursor-pointer">
+                    <img src="ตราโรงเรียนบ้านปงใหม่.png" onerror="this.src='https://placehold.co/100x100/ec4899/ffffff?text=Logo'" alt="โลโก้โรงเรียนบ้านปงใหม่" class="w-12 h-12 object-contain drop-shadow-md">
+                    <div>
+                        <h1 class="font-heading font-bold text-xl text-school-navy leading-tight">โรงเรียนบ้านปงใหม่</h1>
+                        <p class="text-xs text-school-blue font-medium">Banpongmai School</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-5 xl:space-x-8">
+                    <a href="#home" class="font-heading font-medium text-gray-700 hover:text-school-blue transition-colors">หน้าแรก</a>
+                    <a href="#about" class="font-heading font-medium text-gray-700 hover:text-school-pink transition-colors">ข้อมูลโรงเรียน</a>
+                    <a href="#symbol" class="font-heading font-medium text-gray-700 hover:text-school-blue transition-colors">ตราสัญลักษณ์</a>
+                    <a href="#personnel" class="font-heading font-medium text-gray-700 hover:text-school-pink transition-colors">บุคลากร</a>
+                    <a href="#news" class="font-heading font-medium text-gray-700 hover:text-school-blue transition-colors">ข่าวสาร</a>
+                    <a href="#contact" class="btn-gradient text-white font-heading px-5 py-2 rounded-full font-medium shadow-md">ติดต่อเรา</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-school-blue focus:outline-none text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full max-h-[80vh] overflow-y-auto">
+            <div class="px-4 pt-2 pb-6 space-y-2 shadow-lg">
+                <a href="#home" class="mobile-link block px-3 py-3 rounded-md text-base font-heading font-medium text-gray-700 hover:bg-school-blue/10 hover:text-school-blue">หน้าแรก</a>
+                <a href="#about" class="mobile-link block px-3 py-3 rounded-md text-base font-heading font-medium text-gray-700 hover:bg-school-pink/10 hover:text-school-pink">ข้อมูลโรงเรียน</a>
+                <a href="#symbol" class="mobile-link block px-3 py-3 rounded-md text-base font-heading font-medium text-gray-700 hover:bg-school-blue/10 hover:text-school-blue">ตราสัญลักษณ์</a>
+                <a href="#personnel" class="mobile-link block px-3 py-3 rounded-md text-base font-heading font-medium text-gray-700 hover:bg-school-pink/10 hover:text-school-pink">บุคลากร</a>
+                <a href="#news" class="mobile-link block px-3 py-3 rounded-md text-base font-heading font-medium text-gray-700 hover:bg-school-blue/10 hover:text-school-blue">ข่าวสาร</a>
+                <div class="pt-2">
+                    <a href="#contact" class="mobile-link block w-full text-center btn-gradient text-white font-heading px-6 py-3 rounded-xl font-medium">ติดต่อเรา</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-bg min-h-[70vh] flex items-center relative pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center flex flex-col items-center">
+            <div class="pt-12 pb-20">
+                <div class="inline-block px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-sm font-medium mb-6 font-heading">
+                    <i class="fa-solid fa-star mr-2 text-yellow-300"></i> มุ่งเน้นวิชาการ สืบสานงานอาชีพ สู่วิถีความพอเพียง
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white font-heading leading-tight mb-6 drop-shadow-lg">
+                    โรงเรียนบ้านปงใหม่ <br/>
+                </h1>
+                <p class="text-lg md:text-2xl text-school-pinkLight font-heading font-medium mb-10 max-w-2xl mx-auto drop-shadow-md">
+                    "สร้างผู้เรียนให้มีคุณภาพ มีทักษะการเรียนรู้ที่สำคัญในศตวรรษที่ 21"
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#about" class="btn-gradient text-white font-heading px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                        รู้จักโรงเรียน <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                    <a href="https://sites.google.com/phayao2.go.th/pongmaischool/index" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white font-heading px-8 py-4 rounded-full font-semibold text-lg transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-desktop text-xl"></i> ระบบดูแลนักเรียน
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+            <svg class="relative block w-full h-[40px] md:h-[80px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118,130.9,122.9,190.22,112.5,235.1,104.9,279.16,81.1,321.39,56.44Z" fill="#f8fafc"></path>
+            </svg>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 md:py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h4 class="text-school-pink font-heading font-semibold tracking-wider text-sm uppercase mb-2">About Us</h4>
+                <h2 class="text-3xl md:text-4xl font-bold font-heading text-school-navy mb-4">ข้อมูล<span class="text-school-blue">โรงเรียน</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-school-blue to-school-pink mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- ประวัติโรงเรียน -->
+                <div class="lg:col-span-2 bg-white p-8 md:p-10 rounded-3xl shadow-soft hover-card">
+                    <h3 class="text-2xl font-heading font-bold text-school-navy mb-6 flex items-center gap-3">
+                        <i class="fa-solid fa-clock-rotate-left text-school-blue"></i> ประวัติโรงเรียน
+                    </h3>
+                    <div class="space-y-4 text-gray-600 leading-relaxed">
+                        <p>
+                            <strong class="text-school-navy">โรงเรียนบ้านปงใหม่</strong> ก่อตั้งขึ้นเมื่อวันที่ 1 มิถุนายน พ.ศ. 2482 ในชื่อเดิมว่า "โรงเรียนบ้านหัวนา" ตั้งอยู่ที่บ้านหัวนา ตำบลสบบง อำเภอเชียงคำ จังหวัดพะเยา โดยมีนายโพธิมา รวมสุข เป็นครูใหญ่ เริ่มต้นจากอาคารชั่วคราวมุงหลังคาด้วยใบจาก มีครู 2 คน และนักเรียนรุ่นแรก 43 คน
+                        </p>
+                        <p>
+                            ต่อมาในวันที่ 15 พฤษภาคม พ.ศ. 2494 ได้ย้ายสถานที่ตั้งมายัง หมู่ที่ 8 บ้านปงใหม่ ซึ่งเป็นสถานที่ในปัจจุบัน และในวันที่ 18 ธันวาคม พ.ศ. 2505 ได้เปลี่ยนชื่ออย่างเป็นทางการว่า <strong class="text-school-pink">"โรงเรียนบ้านปงใหม่"</strong>
+                        </p>
+                        <p>
+                            ในปี พ.ศ. 2537 โรงเรียนได้ขยายโอกาสทางการศึกษาระดับมัธยมศึกษาตอนต้น และเปิดสอนครบถึงชั้น ม.3 ในปี พ.ศ. 2539 
+                            ปัจจุบันโรงเรียนบ้านปงใหม่ จัดการศึกษา 3 ระดับ ได้แก่ ระดับก่อนประถมศึกษา ระดับประถมศึกษา และระดับมัธยมศึกษาตอนต้น
+                        </p>
+                    </div>
+                </div>
+
+                <!-- วิสัยทัศน์ & มาตรฐาน -->
+                <div class="flex flex-col gap-8">
+                    <!-- Vision -->
+                    <div class="bg-gradient-to-br from-school-blue to-cyan-400 p-8 rounded-3xl shadow-soft text-white hover-card">
+                        <h3 class="text-xl font-heading font-bold mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-eye"></i> วิสัยทัศน์ (Vision)
+                        </h3>
+                        <p class="font-heading font-medium leading-relaxed">
+                            "สร้างผู้เรียนให้มีคุณภาพ มีทักษะการเรียนรู้ที่สำคัญในศตวรรษที่ 21 ด้วยการบริหารและจัดการศึกษาที่มีประสิทธิภาพตามหลักปรัชญาเศรษฐกิจพอเพียง"
+                        </p>
+                    </div>
+                    
+                    <!-- Standard -->
+                    <div class="bg-gradient-to-br from-school-pink to-rose-400 p-8 rounded-3xl shadow-soft text-white hover-card flex-grow">
+                        <h3 class="text-xl font-heading font-bold mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-award"></i> มาตรฐาน (Standard)
+                        </h3>
+                        <p class="font-heading font-medium text-lg text-center mt-4">
+                            "มุ่งเน้นวิชาการ<br/>
+                            สืบสานงานอาชีพ<br/>
+                            สู่วิถีความพอเพียง"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="symbol" class="py-16 bg-white border-y border-gray-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h4 class="text-school-blue font-heading font-semibold tracking-wider text-sm uppercase mb-2">Identity</h4>
+            <h2 class="text-3xl md:text-4xl font-bold font-heading text-school-navy mb-10">ตราสัญลักษณ์<span class="text-school-pink">โรงเรียน</span></h2>
+            
+            <div class="bg-school-gray/30 p-8 md:p-12 rounded-full inline-block mb-6 shadow-inner">
+                <img src="ตราโรงเรียนบ้านปงใหม่.png" onerror="this.src='https://placehold.co/300x300/ec4899/ffffff?text=School+Logo'" alt="ตราสัญลักษณ์โรงเรียนบ้านปงใหม่" class="w-48 h-48 md:w-64 md:h-64 object-contain mx-auto drop-shadow-xl hover:scale-105 transition-transform duration-500">
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-school-navy mt-4">โรงเรียนบ้านปงใหม่</h3>
+            <p class="text-gray-500 font-heading">สังกัดสำนักงานเขตพื้นที่การศึกษาประถมศึกษาพะเยา เขต 2</p>
+        </div>
+    </section>
+
+    <section id="personnel" class="py-16 md:py-24 relative bg-school-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h4 class="text-school-pink font-heading font-semibold tracking-wider text-sm uppercase mb-2">Personnel</h4>
+                <h2 class="text-3xl md:text-4xl font-bold font-heading text-school-navy mb-4">บุคลากร<span class="text-school-blue">โรงเรียน</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-school-blue to-school-pink mx-auto rounded-full"></div>
+            </div>
+
+            <!-- ผู้อำนวยการ -->
+            <div class="max-w-md mx-auto bg-white rounded-3xl overflow-hidden shadow-soft hover-card mb-12 border-t-4 border-school-blue">
+                <div class="p-8 text-center">
+                    <div class="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-6 overflow-hidden border-4 border-white shadow-lg flex items-center justify-center text-4xl text-gray-400">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-school-navy mb-1">นายวรพล จ้าวประยูร</h3>
+                    <p class="text-school-pink font-medium font-heading">ผู้อำนวยการโรงเรียนบ้านปงใหม่</p>
+                    <a href="tel:0993653282" class="mt-4 inline-flex items-center gap-2 bg-school-blue/10 text-school-blue px-4 py-2 rounded-full font-medium hover:bg-school-blue hover:text-white transition-colors text-sm">
+                        <i class="fa-solid fa-phone"></i> 099-365-3282
+                    </a>
+                </div>
+            </div>
+
+            <!-- ตารางรายชื่อครู -->
+            <div class="bg-white rounded-3xl shadow-soft overflow-hidden border border-gray-100">
+                <div class="p-6 bg-school-navy text-white flex items-center gap-3">
+                    <i class="fa-solid fa-users text-xl"></i>
+                    <h3 class="font-heading font-semibold text-lg">ทำเนียบคณะครู / ครูประจำชั้น และครูเวรประจำวัน</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50 text-gray-700 font-heading text-sm border-b border-gray-200">
+                                <th class="p-4 font-medium w-24 text-center">ระดับชั้น</th>
+                                <th class="p-4 font-medium">ชื่อ - นามสกุล</th>
+                                <th class="p-4 font-medium w-40 text-center">เวรประจำวัน</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <!-- อ.2 -->
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors">
+                                <td class="p-4 text-center font-bold font-heading text-school-pink" rowspan="2">อ.2</td>
+                                <td class="p-4 text-gray-700">นางสาวรัชนีวรรณ พึ่งพวก</td>
+                                <td class="p-4 text-center"><span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-xs font-medium">อังคาร</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors">
+                                <td class="p-4 text-gray-700">นางสาวเบญญา ราษี</td>
+                                <td class="p-4 text-center"><span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">ศุกร์</span></td>
+                            </tr>
+                            <!-- อ.3 -->
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors bg-gray-50/50">
+                                <td class="p-4 text-center font-bold font-heading text-school-pink">อ.3</td>
+                                <td class="p-4 text-gray-700">นางกมลชนก กลิ่นมาลา</td>
+                                <td class="p-4 text-center"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">พุธ</span></td>
+                            </tr>
+                            <!-- ป.1 -->
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors">
+                                <td class="p-4 text-center font-bold font-heading text-school-blue" rowspan="2">ป.1</td>
+                                <td class="p-4 text-gray-700">นางสาวสุจิตรา รักษาดี</td>
+                                <td class="p-4 text-center"><span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-medium">จันทร์</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors">
+                                <td class="p-4 text-gray-700">นางสาวอังคณา วงค์ชัย</td>
+                                <td class="p-4 text-center"><span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-medium">พฤหัสบดี</span></td>
+                            </tr>
+                            <!-- ป.2 -->
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors bg-gray-50/50">
+                                <td class="p-4 text-center font-bold font-heading text-school-blue" rowspan="2">ป.2</td>
+                                <td class="p-4 text-gray-700">นายพุฒิพงษ์ พิทาคำ</td>
+                                <td class="p-4 text-center"><span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">ศุกร์</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors bg-gray-50/50">
+                                <td class="p-4 text-gray-700">นางสาวจุฑามาศ ม่วงมิ่งสุข</td>
+                                <td class="p-4 text-center"><span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-medium">พฤหัสบดี</span></td>
+                            </tr>
+                            <!-- ป.3 -->
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors">
+                                <td class="p-4 text-center font-bold font-heading text-school-blue" rowspan="2">ป.3</td>
+                                <td class="p-4 text-gray-700">นางกนกกร วงศ์ใหญ่</td>
+                                <td class="p-4 text-center"><span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-xs font-medium">อังคาร</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors">
+                                <td class="p-4 text-gray-700">นางสาวสุพัตรา กาแก้ว</td>
+                                <td class="p-4 text-center"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">พุธ</span></td>
+                            </tr>
+                            <!-- ป.4 -->
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors bg-gray-50/50">
+                                <td class="p-4 text-center font-bold font-heading text-school-blue">ป.4</td>
+                                <td class="p-4 text-gray-700">นายกฤตยชญ์ ยืนยงกุล</td>
+                                <td class="p-4 text-center"><span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">ศุกร์</span></td>
+                            </tr>
+                            <!-- ป.5 -->
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors">
+                                <td class="p-4 text-center font-bold font-heading text-school-blue" rowspan="2">ป.5</td>
+                                <td class="p-4 text-gray-700">นางเมตตา บัวแย้ม</td>
+                                <td class="p-4 text-center"><span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-medium">จันทร์</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors">
+                                <td class="p-4 text-gray-700">นายรัชนาท ยะมงคล</td>
+                                <td class="p-4 text-center"><span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-medium">พฤหัสบดี</span></td>
+                            </tr>
+                            <!-- ป.6 -->
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors bg-gray-50/50">
+                                <td class="p-4 text-center font-bold font-heading text-school-blue" rowspan="2">ป.6</td>
+                                <td class="p-4 text-gray-700">นายเกียรติพงษ์ ติตะยา</td>
+                                <td class="p-4 text-center"><span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-xs font-medium">อังคาร</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors bg-gray-50/50">
+                                <td class="p-4 text-gray-700">นางสาวปรียานุพรรธ์ กาติ๊บ</td>
+                                <td class="p-4 text-center"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">พุธ</span></td>
+                            </tr>
+                            <!-- ม.1 -->
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors">
+                                <td class="p-4 text-center font-bold font-heading text-school-navy" rowspan="2">ม.1</td>
+                                <td class="p-4 text-gray-700">นายมนตรี เบิกบาน</td>
+                                <td class="p-4 text-center"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">พุธ</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors">
+                                <td class="p-4 text-gray-700">นางสาวประภาพร คงคำเปา</td>
+                                <td class="p-4 text-center"><span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-medium">จันทร์</span></td>
+                            </tr>
+                            <!-- ม.2 -->
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors bg-gray-50/50">
+                                <td class="p-4 text-center font-bold font-heading text-school-navy" rowspan="2">ม.2</td>
+                                <td class="p-4 text-gray-700">นางศรีออน ดีจิต</td>
+                                <td class="p-4 text-center"><span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">ศุกร์</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors bg-gray-50/50">
+                                <td class="p-4 text-gray-700">นางสาวปิยมาศ อินทรสัตยพงศ์</td>
+                                <td class="p-4 text-center"><span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-medium">พฤหัสบดี</span></td>
+                            </tr>
+                            <!-- ม.3 -->
+                            <tr class="border-b border-gray-100 hover:bg-school-tableRow transition-colors">
+                                <td class="p-4 text-center font-bold font-heading text-school-navy" rowspan="2">ม.3</td>
+                                <td class="p-4 text-gray-700">นายทิวากร ยุ่งเกตุ</td>
+                                <td class="p-4 text-center"><span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-medium">จันทร์</span></td>
+                            </tr>
+                            <tr class="hover:bg-school-tableRow transition-colors">
+                                <td class="p-4 text-gray-700">นางสาวธัญญ์พิชชา ลือชัย</td>
+                                <td class="p-4 text-center"><span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-xs font-medium">อังคาร</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="news" class="py-16 md:py-24 bg-white border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+                <div>
+                    <h4 class="text-school-pink font-heading font-semibold tracking-wider text-sm uppercase mb-2">News & Updates</h4>
+                    <h2 class="text-3xl md:text-4xl font-bold font-heading text-school-navy">ข่าวสารและ<span class="text-school-blue">กิจกรรม</span></h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- News Card 1 -->
+                <article class="bg-white rounded-3xl overflow-hidden shadow-soft hover-card flex flex-col h-full border border-gray-100">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <img src="image_d2df8a.jpg" onerror="this.src='https://placehold.co/600x400/0ea5e9/ffffff?text=News'" alt="พัฒนาสิ่งแวดล้อม" class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <span class="text-xs font-medium text-school-pink bg-school-pinkLight/50 px-2 py-1 rounded-md inline-block w-max mb-3">กิจกรรมโรงเรียน</span>
+                        <h3 class="font-heading font-semibold text-lg text-school-navy mb-3 line-clamp-2 hover:text-school-blue transition-colors">ผู้ปกครองร่วมใจ พัฒนาสิ่งแวดล้อมโรงเรียน</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">ภาพความประทับใจจากกิจกรรมพัฒนาสิ่งแวดล้อม ปรับภูมิทัศน์รอบอาคารเรียน เพื่อให้โรงเรียนสะอาด ปลอดภัย</p>
+                    </div>
+                </article>
+
+                <!-- News Card 2 -->
+                <article class="bg-white rounded-3xl overflow-hidden shadow-soft hover-card flex flex-col h-full border border-gray-100">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <img src="image_d2dfab.jpg" onerror="this.src='https://placehold.co/600x400/ec4899/ffffff?text=News'" alt="ประชุมผู้ปกครอง" class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <span class="text-xs font-medium text-school-blue bg-school-blue/10 px-2 py-1 rounded-md inline-block w-max mb-3">ประชาสัมพันธ์</span>
+                        <h3 class="font-heading font-semibold text-lg text-school-navy mb-3 line-clamp-2 hover:text-school-pink transition-colors">ประชุมผู้ปกครองนักเรียน ภาคเรียนที่ 1/2569</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">รับฟังคำชี้แจงนโยบาย พร้อมทั้งรับทราบรายงานผลการเรียนและความประพฤติของนักเรียน</p>
+                    </div>
+                </article>
+
+                <!-- News Card 3 -->
+                <article class="bg-white rounded-3xl overflow-hidden shadow-soft hover-card flex flex-col h-full border border-gray-100">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <img src="image_d2dfe0.jpg" onerror="this.src='https://placehold.co/600x400/f59e0b/ffffff?text=News'" alt="อบรมความปลอดภัย" class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <span class="text-xs font-medium text-green-600 bg-green-100 px-2 py-1 rounded-md inline-block w-max mb-3">อบรม/สัมมนา</span>
+                        <h3 class="font-heading font-semibold text-lg text-school-navy mb-3 line-clamp-2 hover:text-school-blue transition-colors">การอบรมความปลอดภัยในสถานศึกษา สัญจรปลอดภัย</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">อบรมเชิงปฏิบัติการความปลอดภัยในสถานศึกษาและซักซ้อมแผนเผชิญเหตุ</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-school-navy pt-16 pb-8 relative overflow-hidden">
+        <!-- Decorative blob -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-school-pink/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-school-blue/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 border-b border-gray-700 pb-12 mb-8">
+                
+                <!-- Brand Info -->
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="ตราโรงเรียนบ้านปงใหม่.png" onerror="this.src='https://placehold.co/100x100/ffffff/1e293b?text=Logo'" alt="โลโก้" class="w-14 h-14 object-contain bg-white rounded-full p-1 border-2 border-school-blue">
+                        <h2 class="font-heading font-bold text-2xl text-white">โรงเรียนบ้านปงใหม่</h2>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                        มุ่งมั่นพัฒนาผู้เรียนให้มีความรู้ คู่คุณธรรม ก้าวทันเทคโนโลยี เป็นพลเมืองดีของสังคม ตามหลักปรัชญาเศรษฐกิจพอเพียง
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://www.facebook.com/banpongmai516" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 hover:bg-blue-600 hover:text-white transition-colors text-xl">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="https://sites.google.com/phayao2.go.th/pongmaischool/index" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-school-pink/20 flex items-center justify-center text-school-pink hover:bg-school-pink hover:text-white transition-colors text-xl">
+                            <i class="fa-solid fa-desktop"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h3 class="font-heading font-semibold text-white text-xl mb-6 border-l-4 border-school-pink pl-3">ติดต่อเรา</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 text-gray-300 text-sm">
+                            <i class="fa-solid fa-location-dot mt-1 text-school-blue shrink-0 text-lg"></i>
+                            <span>333 ม.8 ต.ทุ่งกล้วย อ.ภูซาง จ.พะเยา 56110</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300 text-sm hover:text-white transition-colors">
+                            <i class="fa-solid fa-phone text-school-pink shrink-0 text-lg"></i>
+                            <a href="tel:0993653282">099-365-3282 (ผู้อำนวยการโรงเรียน)</a>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300 text-sm hover:text-school-blue transition-colors">
+                            <i class="fa-solid fa-map-location-dot text-school-blue shrink-0 text-lg"></i>
+                            <a href="https://maps.app.goo.gl/VmgprxEh7ncouDHTA?g_st=il" target="_blank" rel="noopener noreferrer" class="underline underline-offset-4">เปิดแผนที่ Google Maps</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Map iframe -->
+                <div class="h-48 bg-gray-800 rounded-2xl overflow-hidden relative group">
+                    <!-- เนื่องจากลิงก์เป็นแบบสั้น (Short Link) จึงทำเป็นปุ่มกดที่สวยงามแทน iframe เพื่อกันปัญหาเปิดไม่ขึ้น -->
+                    <img src="https://placehold.co/600x300/1e293b/0ea5e9?text=Map+Location" alt="Map Background" class="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-300">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="https://maps.app.goo.gl/VmgprxEh7ncouDHTA?g_st=il" target="_blank" rel="noopener noreferrer" class="bg-white text-school-navy font-heading font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 transition-transform flex items-center gap-2">
+                            <i class="fa-solid fa-location-arrow text-school-blue"></i> นำทางไปโรงเรียน
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center text-xs text-gray-500">
+                <p>&copy; 2026 โรงเรียนบ้านปงใหม่ สังกัดสำนักงานเขตพื้นที่การศึกษาประถมศึกษาพะเยา เขต 2. สงวนลิขสิทธิ์.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ควบคุมเมนูมือถือ
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        });
+
+        // ให้เมนูมือถือซ่อนอัตโนมัติเมื่อกดลิงก์
+        const mobileLinks = menu.querySelectorAll('.mobile-link');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // ควบคุม Navbar ตอนเลื่อนจอ
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('py-3');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.remove('py-2');
+                navbar.classList.add('py-3');
+            }
+        });
+    </script>
+</body>
+</html>
